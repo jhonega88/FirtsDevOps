@@ -38,12 +38,10 @@ module "aforo255-clusterjhon" {
   vpc_id          = aws_default_vpc.default.id
   #vpc_id         = "vpc-1234556abcdef"
 
-  node_groups = [
+  worker_groups = [
     {
       instance_type = "t2.micro"
-      max_capacity  = 3
-      desired_capacity = 3
-      min_capacity  = 2
+      asg_max_size  = 2
     }
   ]
 }
@@ -78,7 +76,7 @@ resource "kubernetes_cluster_role_binding" "example" {
 
 # Needed to set the default region
 provider "aws" {
-  region  = "us-east-1"
+  region  = "us-east-2"
 }
 
 resource "aws_iam_role" "test_role_dev" {
